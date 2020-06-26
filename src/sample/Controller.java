@@ -62,5 +62,4 @@ public class Controller {
     void quit(ActionEvent event) {
 
     }
-
 }
