@@ -1,3 +1,4 @@
+package utils;
 /**
  * This the how the client will manage the docker instance
  * @author Devam Sisodraker (devam@alumni.ubc.ca)
