@@ -8,5 +8,6 @@ module cernspaceonline {
     requires javafx.web;
     requires javafx.swt;
 
-    opens sample;
+    opens main;
+    opens controllers to javafx.fxml;
 }

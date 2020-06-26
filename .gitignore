@@ -9,3 +9,5 @@
 *.nar
 hs_err_pid*
 out/
+.floo
+.flooignore

@@ -1,6 +1,4 @@
-package classes;
-
-import java.lang.reflect.Array;
+package models;
 
 public class Project {
     String _id = "";
