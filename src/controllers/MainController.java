@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import main.Main;
 
 public class MainController {
 
@@ -49,7 +50,7 @@ public class MainController {
 
     @FXML
     void handleRunningProjectButtonClick(ActionEvent event) {
-
+        Main.loadScene("/resources/projects.fxml", "Cern Space");
     }
 
     @FXML
