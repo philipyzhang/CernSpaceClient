@@ -1,8 +1,5 @@
 <component name="libraryTable">
   <library name="javafx-swt">
-<<<<<<< HEAD
-    <CLASSES />
-=======
     <CLASSES>
       <root url="jar://$USER_HOME$/Desktop/lib/javafx-swt.jar!/" />
       <root url="jar://$USER_HOME$/Desktop/lib/javafx.base.jar!/" />
@@ -13,7 +10,6 @@
       <root url="jar://$USER_HOME$/Desktop/lib/javafx.swing.jar!/" />
       <root url="jar://$USER_HOME$/Desktop/lib/javafx.web.jar!/" />
     </CLASSES>
->>>>>>> 43f488bfbac486331c20cc82e451db9819bbe214
     <JAVADOC />
     <NATIVE>
       <root url="file://$USER_HOME$/Desktop/lib" />
