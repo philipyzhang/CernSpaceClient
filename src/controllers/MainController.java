@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -45,6 +46,7 @@ public class MainController {
 
     @FXML
     void handleOtherProjectsButtonClick(ActionEvent event) {
+        Main.loadScene("/resources/import.fxml", "Cern Space");
 
     }
 
@@ -65,6 +67,7 @@ public class MainController {
 
     @FXML
     void quit(ActionEvent event) {
+        Platform.exit();
 
     }
 
