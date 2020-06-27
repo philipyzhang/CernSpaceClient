@@ -3,10 +3,17 @@ package controllers;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import main.Main;
+import utils.DockerManager;
+
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class MainController {
 
@@ -72,7 +79,22 @@ public class MainController {
     }
 
     @FXML
-    public void handleDownloadDockerButtonClick(ActionEvent actionEvent) {
+    public void handleDownloadDockerButtonClick(ActionEvent actionEvent) throws URISyntaxException, IOException {
+        if (DockerManager.getInstance().checkDocker()) {
+            System.out.println("Docker installed! :D");
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Alert");
+            alert.setHeaderText("Docker Already Installed");
+            alert.setContentText("We have detected that you already have docker installed.");
+            alert.show();
+        } else {
+            System.out.println("Docker not installed. :(");
+            URI uri = new URI("https://www.docker.com/get-started");
+            Desktop dt = Desktop.getDesktop();
+            dt.browse(uri);
+            // TODO: open browser to show "https://docker.com/get-started"
+
+        }
     }
 
     @FXML

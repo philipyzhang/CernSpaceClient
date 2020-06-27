@@ -11,9 +11,11 @@ public final class DockerManager {
 
     private static Runtime runtime = null;
     private static final DockerManager INSTANCE = new DockerManager();
+    private static boolean DOCKER_AVAILABLE = false;
 
     private DockerManager() {
         this.runtime = Runtime.getRuntime();
+        DOCKER_AVAILABLE = this.checkDocker();
     }
 
     /**
@@ -29,16 +31,22 @@ public final class DockerManager {
      * Check to see if docker is installed
      *
      * @return Whether the docker CLI has been installed on the machine
-     * @throws IOException
      */
-    public boolean checkDocker() throws IOException {
-        Process process = this.runtime.exec("docker -v");
-        String output = new String(process.getInputStream().readAllBytes(), StandardCharsets.US_ASCII);
+    public boolean checkDocker() {
+        try {
+            Process process = this.runtime.exec("docker -v");
+            String output = new String(process.getInputStream().readAllBytes(), StandardCharsets.US_ASCII);
 
-        if (output.startsWith("Docker version")) {
-            return true;
+            if (output.startsWith("Docker version")) {
+                DOCKER_AVAILABLE = true;
+                return true;
+            }
+            DOCKER_AVAILABLE = false;
+            return false;
+        } catch (IOException exception) {
+            DOCKER_AVAILABLE = false;
+            return false;
         }
-        return false;
     }
 
     /**
@@ -51,6 +59,8 @@ public final class DockerManager {
      * @throws IOException
      */
     public boolean joinSwarm(String ip, Integer port, String token) throws IOException {
+        this.preCheckDocker();
+
         String command = "docker swarm join --token " + token + " " + ip + ":" + port.toString();
         Process process = this.runtime.exec(command);
         String out = new String(process.getInputStream().readAllBytes(), StandardCharsets.US_ASCII);
@@ -69,6 +79,8 @@ public final class DockerManager {
      * @throws IOException
      */
     public boolean leaveSwarm(Boolean force) throws IOException {
+        this.preCheckDocker();
+
         String command = force ? "docker swarm leave -f" : "docker swarm leave";
         Process process = this.runtime.exec(command);
         String out = new String(process.getInputStream().readAllBytes(), StandardCharsets.US_ASCII);
@@ -87,6 +99,7 @@ public final class DockerManager {
      * @throws IOException
      */
     public boolean restartDaemon() throws IOException {
+        this.preCheckDocker();
 
         if(System.getProperty("os").startsWith("Windows")) {
             // Windows
@@ -124,6 +137,12 @@ public final class DockerManager {
         String commandStart = "net start com.docker.service";
         Process processStart = this.runtime.exec(commandStart);
         String outStart = new String(processStart.getInputStream().readAllBytes(), StandardCharsets.US_ASCII);
+    }
+
+    private void preCheckDocker() {
+        if(!this.checkDocker()) {
+            throw new Error("Docker is not accessible, make sure it is installed and added to the path.");
+        }
     }
 
 

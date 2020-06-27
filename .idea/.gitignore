@@ -17,4 +17,5 @@
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+out/
 >>>>>>> 43f488bfbac486331c20cc82e451db9819bbe214

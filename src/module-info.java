@@ -7,6 +7,8 @@ module cernspaceonline {
     requires javafx.swing;
     requires javafx.web;
     requires javafx.swt;
+    requires java.net.http;
+    requires json.simple;
 
     opens main;
     opens controllers to javafx.fxml;
