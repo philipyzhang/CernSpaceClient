@@ -101,30 +101,32 @@ public final class ProjectsFetcher {
 
         JSONArray documents = (JSONArray) jo.get("documents");
         documents.forEach(documentOne -> {
-            Project project = new Project();
 
             JSONObject documentObject = (JSONObject) documentOne;
             JSONObject fieldsObject = (JSONObject) documentObject.get("fields");
 
+            // root properties
             String _id = ((String) ((JSONObject) fieldsObject.get("_id")).get("stringValue"));
-            project._id = _id;
-
             String name = ((String) ((JSONObject) fieldsObject.get("name")).get("stringValue"));
-            project.name = name;
-
+            String longDescription = ((String) ((JSONObject) fieldsObject.get("longDescription")).get("stringValue"));
+            String shortDescription = ((String) ((JSONObject) fieldsObject.get("shortDescription")).get("stringValue"));
             String lastUpdated = ((String) ((JSONObject) fieldsObject.get("lastUpdated")).get("integerValue"));
-            project.lastUpdated = Integer.parseInt(lastUpdated);
 
+            // host properties
             JSONObject hostObject = (JSONObject) ((JSONObject) ((JSONObject) fieldsObject.get("host")).get("mapValue")).get("fields");
             String hostIp = ((String) ((JSONObject) hostObject.get("ip")).get("stringValue"));
-            project.hostIp = hostIp;
-
             String hostPort = ((String) ((JSONObject) hostObject.get("port")).get("integerValue"));
-            project.hostPort = Integer.parseInt(hostPort);
-
             String hostToken = ((String) ((JSONObject) hostObject.get("token")).get("stringValue"));
-            project.hostToken = hostToken;
 
+            Project project = new Project(
+                    _id,
+                    name,
+                    shortDescription,
+                    longDescription,
+                    hostIp,
+                    Integer.parseInt(hostPort),
+                    hostToken,
+                    Integer.parseInt(lastUpdated));
             projects.add(project);
         });
 
