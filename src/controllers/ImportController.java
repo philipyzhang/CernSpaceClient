@@ -5,9 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import models.Project;
+import models.ProjectsManager;
 
 public class ImportController {
-
     @FXML
     private Button quitButton;
 
@@ -15,7 +16,12 @@ public class ImportController {
     private TextField searchBar;
 
     @FXML
-    private TableView<?> table;
+    private TableView<Project> table;
+
+    public void initialize(){
+        ProjectsManager projectManager = ProjectsManager.getInstance();
+        table.getItems().setAll(projectManager.getProjects());
+    }
 
     @FXML
     void handleSearchBarInput(ActionEvent event) {

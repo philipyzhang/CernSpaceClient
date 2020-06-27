@@ -1,49 +1,60 @@
 package models;
 
-public class Project {
-    private String _id = "";
-    private String name = "";
-    private String ip = "";
-    private Integer port = 69;
-    private String token = "";
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
-    public String get_id() {
-        return _id;
+public class Project {
+    private SimpleStringProperty _id ;
+    private SimpleStringProperty name;
+    private SimpleStringProperty ip;
+    private SimpleIntegerProperty port;
+    private SimpleStringProperty token;
+
+    public Project(String _id, String name, String ip, Integer port, String token) {
+        this._id = new SimpleStringProperty(_id);
+        this.name = new SimpleStringProperty(name);
+        this.ip = new SimpleStringProperty(ip);
+        this.port = new SimpleIntegerProperty(port);
+        this.token = new SimpleStringProperty(token);
     }
 
-    public void set_id(String _id) {
-        this._id = _id;
+    public String getId() {
+        return _id.get();
+    }
+
+    public void setId(String _id) {
+        this._id.set(_id);
     }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name.set(name);
     }
 
     public String getIp() {
-        return ip;
+        return ip.get();
     }
 
     public void setIp(String ip) {
-        this.ip = ip;
+        this.ip.set(ip);
     }
 
     public Integer getPort() {
-        return port;
+        return port.get();
     }
 
     public void setPort(Integer port) {
-        this.port = port;
+        this.port.set(port);
     }
 
     public String getToken() {
-        return token;
+        return token.get();
     }
 
     public void setToken(String token) {
-        this.token = token;
+        this.token.set(token);
     }
 }
