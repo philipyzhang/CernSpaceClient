@@ -22,6 +22,7 @@ import org.json.simple.parser.ParseException;
 public final class ProjectsFetcher {
 
     private static HttpClient httpClient = HttpClient.newHttpClient();
+    private static List<Project> projects = new ArrayList<Project>();
     private static final ProjectsFetcher INSTANCE = new ProjectsFetcher();
 
     private ProjectsFetcher() {
@@ -38,14 +39,29 @@ public final class ProjectsFetcher {
     }
 
     /**
-     * Gets all the projects from the cloud
+     * Gets cached projects, if not cache is available, fetches and then caches
      *
-     * @return Array of projects
+     * @return List of Cached Projects
      * @throws IOException
      * @throws ParseException
      */
     public List<Project> getProjects() throws IOException, ParseException {
-        return formatToProject(fetchFromFirestore());
+        if (projects.size() == 0) {
+            projects = this.getProjectsFromCloud();
+        }
+        return projects;
+    }
+
+    /**
+     * Gets all the projects from the cloud, updates cache with new retrival
+     *
+     * @return List of Fetched Projects
+     * @throws IOException
+     * @throws ParseException
+     */
+    public List<Project> getProjectsFromCloud() throws IOException, ParseException {
+        projects = formatToProject(fetchFromFirestore());
+        return projects;
     };
 
     /**
