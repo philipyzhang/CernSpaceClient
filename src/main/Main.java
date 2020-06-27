@@ -38,21 +38,5 @@ public class Main extends Application {
         Main.loadScene("/resources/sample.fxml", "Cern Space");
     }
 
-//    public static void main(String[] args) {
-//        launch(args);
-//    }
-
-    public static void main(String[] args) {
-        ProjectsFetcher pf = ProjectsFetcher.getInstance();
-        List<Project> projects = new ArrayList<Project>();
-        try {
-            projects = pf.getProjects();
-        } catch (IOException exception) {
-            System.out.println("IOException");
-        } catch (ParseException exception) {
-            System.out.println("ParseException");
-        }
-
-        projects.forEach(project -> System.out.println(project._id));
-    }
+    public static void main(String[] args) { launch(args); }
 }
