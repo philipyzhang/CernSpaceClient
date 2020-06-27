@@ -10,5 +10,6 @@
     <orderEntry type="library" name="JavaFX 11" level="application" />
     <orderEntry type="library" name="JavaFX" level="application" />
     <orderEntry type="library" name="javafx-liang" level="project" />
+    <orderEntry type="library" name="json-simple-1.1.1" level="project" />
   </component>
 </module>
