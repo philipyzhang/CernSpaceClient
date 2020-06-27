@@ -60,7 +60,7 @@
             </Label>
             <VBox prefHeight="200.0" prefWidth="1003.0" GridPane.rowIndex="1">
                <children>
-                  <Label fx:id="projectNameLabel" text="No Project Running">
+                  <Label fx:id="projectNameLabel" text="No Project Running FUCK">
                      <font>
                         <Font size="36.0" />
                      </font>
