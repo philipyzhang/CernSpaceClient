@@ -15,6 +15,9 @@ public class ImportController {
     private Button quitButton;
 
     @FXML
+    private Button backButton;
+
+    @FXML
     private TextField searchBar;
 
     @FXML
@@ -24,12 +27,15 @@ public class ImportController {
         ProjectsManager projectManager = ProjectsManager.getInstance();
         table.getItems().setAll(projectManager.getProjects());
     }
-    private Button backButton;
 
 
     @FXML
     void quit(ActionEvent event) {
         Platform.exit();
+    }
+
+    @FXML
+    void handleSearchBarInput(ActionEvent event) {
 
     }
 
