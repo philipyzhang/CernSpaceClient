@@ -13,4 +13,5 @@ module cernspaceonline {
     opens main;
     opens controllers to javafx.fxml;
     opens models;
+    opens utils;
 }

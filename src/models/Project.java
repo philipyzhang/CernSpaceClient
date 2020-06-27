@@ -1,5 +1,4 @@
 package models;
-
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -11,8 +10,9 @@ public class Project {
     private SimpleStringProperty ip;
     private SimpleIntegerProperty port;
     private SimpleStringProperty token;
+    private SimpleIntegerProperty lastUpdated;
 
-    public Project(String _id, String name, String shortDescription, String longDescription, String ip, Integer port, String token) {
+    public Project(String _id, String name, String shortDescription, String longDescription, String ip, Integer port, String token, Integer lastUpdated) {
         this._id = new SimpleStringProperty(_id);
         this.name = new SimpleStringProperty(name);
         this.shortDescription = new SimpleStringProperty(shortDescription);
@@ -20,6 +20,7 @@ public class Project {
         this.ip = new SimpleStringProperty(ip);
         this.port = new SimpleIntegerProperty(port);
         this.token = new SimpleStringProperty(token);
+        this.lastUpdated = new SimpleIntegerProperty(lastUpdated);
     }
 
     public String getId() {
@@ -76,5 +77,13 @@ public class Project {
 
     public void setToken(String token) {
         this.token.set(token);
+    }
+
+    public Integer getLastUpdated() {
+        return lastUpdated.get();
+    }
+
+    public void setLastUpdated(Integer lastUpdated) {
+        this.lastUpdated.set(lastUpdated);
     }
 }

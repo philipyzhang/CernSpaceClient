@@ -25,14 +25,16 @@ public class ProjectsManager {
                 "long description",
                 "ip",
                 69,
-                "token"));
+                "token",
+                1));
         addProject(new Project("2id",
                 "2name",
                 "short description",
                 "long description",
                 "2ip",
                 269,
-                "2token"));
+                "2token",
+                1));
     }
 
     public ArrayList<Project> getProjects() {
