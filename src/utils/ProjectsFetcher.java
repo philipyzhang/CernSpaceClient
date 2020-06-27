@@ -11,6 +11,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.http.HttpClient;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -42,10 +44,9 @@ public final class ProjectsFetcher {
      * @throws IOException
      * @throws ParseException
      */
-    // TODO: Change the signature of this function after you change the signature of formatToProject (line 68)
-    public Object getProjects() throws IOException, ParseException {
+    public List<Project> getProjects() throws IOException, ParseException {
         return formatToProject(fetchFromFirestore());
-    }F
+    };
 
     /**
      * Fetch data in string format from firestore
@@ -67,32 +68,51 @@ public final class ProjectsFetcher {
         return conn;
     }
 
-
-    // TODO: Change the signature to return Project[]
-    private Object formatToProject(HttpURLConnection connection) throws IOException, ParseException {
-        InputStreamReader in = new InputStreamReader(conn.getInputStream());
+    /**
+     * Transform JSON stream from a web source to projects, provided it fits the schema
+     *
+     * @param connection Takes in an HTTP connection
+     * @return List of Projects retrieved
+     * @throws IOException
+     * @throws ParseException
+     */
+    private List<Project> formatToProject(HttpURLConnection connection) throws IOException, ParseException {
+        InputStreamReader in = new InputStreamReader(connection.getInputStream());
         BufferedReader br = new BufferedReader(in);
         Object object = new JSONParser().parse(br);
         JSONObject jo = (JSONObject) object;
+        List<Project> projects = new ArrayList<Project>();
 
         JSONArray documents = (JSONArray) jo.get("documents");
         documents.forEach(documentOne -> {
+            Project project = new Project();
 
-            // TODO: This part isn't finished yet, please extract the data properly
             JSONObject documentObject = (JSONObject) documentOne;
             JSONObject fieldsObject = (JSONObject) documentObject.get("fields");
 
             String _id = ((String) ((JSONObject) fieldsObject.get("_id")).get("stringValue"));
+            project._id = _id;
+
             String name = ((String) ((JSONObject) fieldsObject.get("name")).get("stringValue"));
-            Integer lastUpdated = ((Integer) ((JSONObject) fieldsObject.get("lastUpdated")).get("integerValue"));
+            project.name = name;
 
-            JSONObject hostObject = ((JSONObject) ((JSONObject) fieldsObject.get("host")).get("mapValue"));
+            String lastUpdated = ((String) ((JSONObject) fieldsObject.get("lastUpdated")).get("integerValue"));
+            project.lastUpdated = Integer.parseInt(lastUpdated);
+
+            JSONObject hostObject = (JSONObject) ((JSONObject) ((JSONObject) fieldsObject.get("host")).get("mapValue")).get("fields");
             String hostIp = ((String) ((JSONObject) hostObject.get("ip")).get("stringValue"));
-            Integer hostPort = ((Integer) ((JSONObject) hostObject.get("port")).get("integerValue"));
-            String hostToken = ((String) ((JSONObject) hostObject.get("token")).get("stringValue"));
+            project.hostIp = hostIp;
 
+            String hostPort = ((String) ((JSONObject) hostObject.get("port")).get("integerValue"));
+            project.hostPort = Integer.parseInt(hostPort);
+
+            String hostToken = ((String) ((JSONObject) hostObject.get("token")).get("stringValue"));
+            project.hostToken = hostToken;
+
+            projects.add(project);
         });
+
         connection.disconnect();
-        return new Object();
+        return projects;
     }
 }
