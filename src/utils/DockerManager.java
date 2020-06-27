@@ -14,10 +14,11 @@ public final class DockerManager {
     private static Runtime runtime = null;
     private static final DockerManager INSTANCE = new DockerManager();
     private static boolean DOCKER_AVAILABLE = false;
-    private static Project currentProject = null;
+    private static Project currentProject;
 
     private DockerManager() {
         this.runtime = Runtime.getRuntime();
+        this.currentProject = null;
         DOCKER_AVAILABLE = this.checkDocker();
     }
 
@@ -48,8 +49,9 @@ public final class DockerManager {
      * @throws IOException
      */
     public boolean runProject(Project project) throws IOException{
+        this.currentProject = project;
         if(joinSwarm(project.getIp(), project.getPort(), project.getToken())) {
-            currentProject = project;
+            this.currentProject = project;
             return true;
         } else {
             return false;

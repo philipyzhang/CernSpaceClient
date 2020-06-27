@@ -100,7 +100,7 @@ public class ImportController {
         if (DockerManager.getInstance().checkDocker()) {
             try {
                 dockerManager.runProject(project);
-                Alert alert2 = new Alert(Alert.AlertType.WARNING);
+                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                 alert2.setTitle("Successfully installed " + project.getName());
                 alert2.setHeaderText("Installation Success");
                 alert2.showAndWait();
@@ -126,6 +126,8 @@ public class ImportController {
             alert1.showAndWait();
 
         }
+
+        System.out.println(DockerManager.getInstance().getCurrentProject());
     }
 
 
