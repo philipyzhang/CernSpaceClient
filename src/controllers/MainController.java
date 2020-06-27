@@ -45,7 +45,7 @@ public class MainController {
 
     @FXML
     void handleOtherProjectsButtonClick(ActionEvent event) {
-
+        Main.loadScene("/resources/import.fxml", "Cern Space");
     }
 
     @FXML
