@@ -5,13 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.json.simple.parser.ParseException;
-import utils.Project;
-import utils.ProjectsFetcher;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main extends Application {
     private static Stage stage;
