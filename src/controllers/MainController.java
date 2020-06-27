@@ -3,10 +3,13 @@ package controllers;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import main.Main;
+import utils.DockerManager;
 
 public class MainController {
 
@@ -73,6 +76,18 @@ public class MainController {
 
     @FXML
     public void handleDownloadDockerButtonClick(ActionEvent actionEvent) {
+        if (DockerManager.getInstance().checkDocker()) {
+            System.out.println("Docker installed! :D");
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Alert");
+            alert.setHeaderText("Docker Already Installed");
+            alert.setContentText("We have detected that you already have docker installed.");
+            alert.show();
+        } else {
+            System.out.println("Docker not installed. :(");
+            // TODO: open browser to show "https://docker.com/get-started"
+
+        }
     }
 
     @FXML
