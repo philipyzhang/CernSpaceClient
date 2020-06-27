@@ -5,8 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.json.simple.parser.ParseException;
+import utils.Project;
+import utils.ProjectsFetcher;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends Application {
     private static Stage stage;
@@ -33,7 +38,21 @@ public class Main extends Application {
         Main.loadScene("/resources/sample.fxml", "Cern Space");
     }
 
+//    public static void main(String[] args) {
+//        launch(args);
+//    }
+
     public static void main(String[] args) {
-        launch(args);
+        ProjectsFetcher pf = ProjectsFetcher.getInstance();
+        List<Project> projects = new ArrayList<Project>();
+        try {
+            projects = pf.getProjects();
+        } catch (IOException exception) {
+            System.out.println("IOException");
+        } catch (ParseException exception) {
+            System.out.println("ParseException");
+        }
+
+        projects.forEach(project -> System.out.println(project._id));
     }
 }
