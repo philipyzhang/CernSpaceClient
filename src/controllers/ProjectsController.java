@@ -10,6 +10,9 @@ public class ProjectsController {
     private Button quitButton;
 
     @FXML
+    private Button backButton;
+
+    @FXML
     private Button checkSystemPerformance;
 
     @FXML

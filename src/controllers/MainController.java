@@ -19,6 +19,9 @@ public class MainController {
     private Button softwareUpdateButton;
 
     @FXML
+    private Button downloadDockerButton;
+
+    @FXML
     private Button openWebAppButton;
 
     @FXML
@@ -26,6 +29,8 @@ public class MainController {
 
     @FXML
     private Button privacyPolicyButton;
+    @FXML
+    private Button softwareLicenseButton;
 
     @FXML
     private Button quitButton;
@@ -50,7 +55,7 @@ public class MainController {
 
     @FXML
     void handleRunningProjectButtonClick(ActionEvent event) {
-        Main.loadScene("/resources/projects.fxml", "Cern Space");
+        Main.loadScene("../resources/projects.fxml", "Cern Space");
     }
 
     @FXML
@@ -61,5 +66,13 @@ public class MainController {
     @FXML
     void quit(ActionEvent event) {
 
+    }
+
+    @FXML
+    public void handleDownloadDockerButtonClick(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    public void handleSoftwareLicenseButtonClick(ActionEvent actionEvent) {
     }
 }
