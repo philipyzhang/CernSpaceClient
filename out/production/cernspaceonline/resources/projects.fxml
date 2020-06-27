@@ -6,9 +6,10 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProjectsController">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProjectsController">
     <columnConstraints>
         <ColumnConstraints />
         <ColumnConstraints />
@@ -57,6 +58,19 @@
                   <Font size="36.0" />
                </font>
             </Label>
+            <VBox prefHeight="200.0" prefWidth="1003.0" GridPane.rowIndex="1">
+               <children>
+                  <Label fx:id="projectNameLabel" text="Project Name">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="projectDescriptionLabel" alignment="TOP_LEFT" prefHeight="343.0" prefWidth="1019.0" text="description description description description description description description description description description description description description description description description description description " wrapText="true" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+               </padding>
+            </VBox>
          </children>
       </GridPane>
    </children>

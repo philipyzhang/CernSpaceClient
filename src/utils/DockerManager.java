@@ -4,6 +4,8 @@ package utils;
  * @author Devam Sisodraker (devam@alumni.ubc.ca)
  */
 
+import models.Project;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
@@ -12,6 +14,7 @@ public final class DockerManager {
     private static Runtime runtime = null;
     private static final DockerManager INSTANCE = new DockerManager();
     private static boolean DOCKER_AVAILABLE = false;
+    private static Project currentProject = null;
 
     private DockerManager() {
         this.runtime = Runtime.getRuntime();
@@ -25,6 +28,32 @@ public final class DockerManager {
      */
     public static DockerManager getInstance() {
         return INSTANCE;
+    }
+
+    /**
+     * Retrieves the currently running project
+     *
+     * @return the currently running project
+     */
+    public Project getCurrentProject() {
+        return currentProject;
+    }
+
+
+    /**
+     * Runs a project and requests the docker instance to join a swarm
+     *
+     * @param project the project to run
+     * @return Whether docker has successfully joined the swarm
+     * @throws IOException
+     */
+    public boolean runProject(Project project) throws IOException{
+        if(joinSwarm(project.getIp(), project.getPort(), project.getToken())) {
+            currentProject = project;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

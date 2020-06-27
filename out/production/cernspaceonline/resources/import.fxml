@@ -56,7 +56,7 @@
                         </AnchorPane>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="57.0" prefWidth="518.0">
                             <children>
-                                <TextField fx:id="searchBar" alignment="CENTER" layoutX="24.0" layoutY="25.0" onAction="#handleSearchBarInput" prefHeight="37.0" prefWidth="449.0" style="-fx-background-color: #E8E8E8; -fx-border-color: black; -fx-border-radius: 12px; -fx-background-radius: 12px;" />
+                                <TextField fx:id="searchBar" alignment="CENTER" layoutX="24.0" layoutY="25.0" onKeyTyped="#handleSearchBarInput" prefHeight="37.0" prefWidth="449.0" style="-fx-background-color: #E8E8E8; -fx-border-color: black; -fx-border-radius: 12px; -fx-background-radius: 12px;" />
                             </children>
                         </AnchorPane>
                     </items>
