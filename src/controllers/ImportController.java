@@ -100,8 +100,16 @@ public class ImportController {
         if (DockerManager.getInstance().checkDocker()) {
             try {
                 dockerManager.runProject(project);
+                Alert alert2 = new Alert(Alert.AlertType.WARNING);
+                alert2.setTitle("Successfully installed " + project.getName());
+                alert2.setHeaderText("Installation Success");
+                alert2.showAndWait();
             } catch (Exception e) {
-
+                Alert alert2 = new Alert(Alert.AlertType.WARNING);
+                alert2.setTitle("ERROR");
+                alert2.setHeaderText("ERROR");
+                alert2.setContentText("ERROR");
+                alert2.showAndWait();
             }
 
         } else if (project == null) {
