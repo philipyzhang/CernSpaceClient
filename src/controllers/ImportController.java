@@ -95,11 +95,10 @@ public class ImportController {
     @FXML
     void handleInstallButtonClick(ActionEvent event) {
         Project project = table.getSelectionModel().getSelectedItem();
-        DockerManager dockerManager = DockerManager.getInstance();
 
         if (DockerManager.getInstance().checkDocker()) {
             try {
-                dockerManager.runProject(project);
+                DockerManager.getInstance().runProject(project);
                 Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                 alert2.setTitle("Successfully installed " + project.getName());
                 alert2.setHeaderText("Installation Success");
@@ -124,10 +123,7 @@ public class ImportController {
             alert1.setHeaderText("Docker is not Installed, couldn't install " + project.getName());
             alert1.setContentText("We have detected that you do not have docker installed. Please Install Docker from the Home Screen");
             alert1.showAndWait();
-
         }
-
-        System.out.println(DockerManager.getInstance().getCurrentProject());
     }
 
 

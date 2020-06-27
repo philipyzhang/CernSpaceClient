@@ -1,6 +1,7 @@
 package utils;
 /**
  * This the how the client will manage the docker instance
+ *
  * @author Devam Sisodraker (devam@alumni.ubc.ca)
  */
 
@@ -48,9 +49,8 @@ public final class DockerManager {
      * @return Whether docker has successfully joined the swarm
      * @throws IOException
      */
-    public boolean runProject(Project project) throws IOException{
-        this.currentProject = project;
-        if(joinSwarm(project.getIp(), project.getPort(), project.getToken())) {
+    public boolean runProject(Project project) throws IOException {
+        if (joinSwarm(project.getIp(), project.getPort(), project.getToken())) {
             this.currentProject = project;
             return true;
         } else {
@@ -132,7 +132,7 @@ public final class DockerManager {
     public boolean restartDaemon() throws IOException {
         this.preCheckDocker();
 
-        if(System.getProperty("os").startsWith("Windows")) {
+        if (System.getProperty("os").startsWith("Windows")) {
             // Windows
             this.restartWindowsDaemon();
         } else {
@@ -171,7 +171,7 @@ public final class DockerManager {
     }
 
     private void preCheckDocker() {
-        if(!this.checkDocker()) {
+        if (!this.checkDocker()) {
             throw new Error("Docker is not accessible, make sure it is installed and added to the path.");
         }
     }
