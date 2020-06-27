@@ -1,29 +1,30 @@
 package controllers;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import main.Main;
 
 public class ImportController {
+
 
     @FXML
     private Button quitButton;
 
     @FXML
-    private TextField searchBar;
+    private Button backButton;
+
 
     @FXML
-    private TableView<?> table;
-
-    @FXML
-    void handleSearchBarInput(ActionEvent event) {
+    void quit(ActionEvent event) {
+        Platform.exit();
 
     }
 
     @FXML
-    void quit(ActionEvent event) {
+    void back(ActionEvent event) {
+        Main.loadScene("/resources/sample.fxml", "Cern Space");
 
     }
 
