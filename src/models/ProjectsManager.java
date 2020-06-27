@@ -18,8 +18,21 @@ public class ProjectsManager {
 
     public ProjectsManager() {
         projects = new ArrayList<>();
-        addProject(new Project("id", "name", "ip",69, "token"));
-        addProject(new Project("2id", "2name", "2ip",269, "2token"));
+        addProject(new Project(
+                "id",
+                "name",
+                "short description",
+                "long description",
+                "ip",
+                69,
+                "token"));
+        addProject(new Project("2id",
+                "2name",
+                "short description",
+                "long description",
+                "2ip",
+                269,
+                "2token"));
     }
 
     public ArrayList<Project> getProjects() {

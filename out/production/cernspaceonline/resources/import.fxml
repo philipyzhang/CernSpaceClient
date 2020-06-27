@@ -72,8 +72,8 @@
                             </cellValueFactory>
                         </TableColumn>
                         <TableColumn prefWidth="323.0" text="Install">
-<!--                            <cellValueFactory><PropertyValueFactory property="install" />-->
-<!--                            </cellValueFactory>-->
+                            <cellValueFactory><PropertyValueFactory property="shortDescription" />
+                            </cellValueFactory>
                         </TableColumn>
                     </columns>
                     <GridPane.margin>

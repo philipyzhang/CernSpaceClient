@@ -6,13 +6,17 @@ import javafx.beans.property.SimpleStringProperty;
 public class Project {
     private SimpleStringProperty _id ;
     private SimpleStringProperty name;
+    private SimpleStringProperty shortDescription;
+    private SimpleStringProperty longDescription;
     private SimpleStringProperty ip;
     private SimpleIntegerProperty port;
     private SimpleStringProperty token;
 
-    public Project(String _id, String name, String ip, Integer port, String token) {
+    public Project(String _id, String name, String shortDescription, String longDescription, String ip, Integer port, String token) {
         this._id = new SimpleStringProperty(_id);
         this.name = new SimpleStringProperty(name);
+        this.shortDescription = new SimpleStringProperty(shortDescription);
+        this.longDescription = new SimpleStringProperty(longDescription);
         this.ip = new SimpleStringProperty(ip);
         this.port = new SimpleIntegerProperty(port);
         this.token = new SimpleStringProperty(token);
@@ -48,6 +52,22 @@ public class Project {
 
     public void setPort(Integer port) {
         this.port.set(port);
+    }
+
+    public String getShortDescription() {
+        return shortDescription.get();
+    }
+
+    public void setShortDescription(String token) {
+        this.shortDescription.set(token);
+    }
+
+    public String getLongDescription() {
+        return longDescription.get();
+    }
+
+    public void setLongDescription(String token) {
+        this.longDescription.set(token);
     }
 
     public String getToken() {
