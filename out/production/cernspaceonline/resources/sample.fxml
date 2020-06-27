@@ -103,7 +103,7 @@
                                  <GridPane.margin>
                                     <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
                                  </GridPane.margin></Button>
-                              <Button fx:id="softwareUpdateButton1" mnemonicParsing="false" onAction="#handleSoftwareUpdateButtonClick" prefHeight="64.0" prefWidth="458.0" style="-fx-border-color: black;" styleClass="software_update" stylesheets="@buttons.css" text="Install Docker" GridPane.rowIndex="2">
+                              <Button fx:id="downloadDockerButton" mnemonicParsing="false" onAction="#handleDownloadDockerButtonClick" prefHeight="64.0" prefWidth="458.0" style="-fx-border-color: black;" styleClass="software_update" stylesheets="@buttons.css" text="Install Docker" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -155,7 +155,7 @@
                                 <Font size="24.0" />
                             </font>
                         </Button>
-                  <Button fx:id="privacyPolicyButton1" alignment="CENTER" mnemonicParsing="false" onAction="#handlePrivacyPolicyButtonClick" prefHeight="53.0" prefWidth="490.0" style="-fx-border-color: black;" styleClass="bluebtn" stylesheets="@buttons.css" text="View Software License" textFill="WHITE" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+                  <Button fx:id="softwareLicenseButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleSoftwareLicenseButtonClick" prefHeight="53.0" prefWidth="490.0" style="-fx-border-color: black;" styleClass="bluebtn" stylesheets="@buttons.css" text="View Software License" textFill="WHITE" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
                      <font>
                         <Font size="24.0" />
                      </font>
