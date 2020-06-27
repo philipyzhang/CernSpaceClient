@@ -96,7 +96,7 @@ public final class DockerManager {
         Process process = this.runtime.exec(command);
         String out = new String(process.getInputStream().readAllBytes(), StandardCharsets.US_ASCII);
 
-        if (out == "This node joined a swarm as a worker.") {
+        if (out.startsWith("This node joined a swarm as a worker."))  {
             return true;
         }
         return false;
@@ -116,7 +116,7 @@ public final class DockerManager {
         Process process = this.runtime.exec(command);
         String out = new String(process.getInputStream().readAllBytes(), StandardCharsets.US_ASCII);
 
-        if (out == "Node left the default swarm.") {
+        if (out.startsWith("Node left the default swarm.")) {
             return true;
         }
         return false;
