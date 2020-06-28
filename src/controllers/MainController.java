@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class MainController {
+public class MainController{
 
     @FXML
     private Button runningProjectButton;
@@ -47,7 +47,10 @@ public class MainController {
     private Label title;
 
     @FXML
-    void handleOpenWebAppButtonClick(ActionEvent event) {
+    void handleOpenWebAppButtonClick(ActionEvent event) throws URISyntaxException, IOException {
+        URI uri = new URI("https://cernspace.online/");
+        Desktop dt = Desktop.getDesktop();
+        dt.browse(uri);
 
     }
 
@@ -58,7 +61,11 @@ public class MainController {
     }
 
     @FXML
-    void handlePrivacyPolicyButtonClick(ActionEvent event) {
+    void handlePrivacyPolicyButtonClick(ActionEvent event) throws URISyntaxException, IOException {
+
+        URI uri = new URI("https://cernspace.online/privacy-policy");
+        Desktop dt = Desktop.getDesktop();
+        dt.browse(uri);
 
     }
 
@@ -69,6 +76,7 @@ public class MainController {
 
     @FXML
     void handleSoftwareUpdateButtonClick(ActionEvent event) {
+
 
     }
 
@@ -98,6 +106,10 @@ public class MainController {
     }
 
     @FXML
-    public void handleSoftwareLicenseButtonClick(ActionEvent actionEvent) {
+    public void handleSoftwareLicenseButtonClick(ActionEvent actionEvent) throws URISyntaxException, IOException {
+        URI uri = new URI("https://cernspace.online/eula");
+        Desktop dt = Desktop.getDesktop();
+        dt.browse(uri);
     }
+
 }
