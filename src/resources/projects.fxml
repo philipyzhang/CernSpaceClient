@@ -53,14 +53,14 @@
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
             </Button>
-            <Label contentDisplay="CENTER" prefHeight="69.0" prefWidth="579.0" text="CERN SPACE - Downloaded Projects" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Label contentDisplay="CENTER" prefHeight="69.0" prefWidth="579.0" text="CERN SPACE - Downloaded Project" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
             <VBox prefHeight="200.0" prefWidth="1003.0" GridPane.rowIndex="1">
                <children>
-                  <Label fx:id="projectNameLabel" text="No Project Running FUCK">
+                  <Label fx:id="projectNameLabel" text="No Project Running">
                      <font>
                         <Font size="36.0" />
                      </font>
