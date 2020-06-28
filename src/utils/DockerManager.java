@@ -1,8 +1,11 @@
 package utils;
 /**
  * This the how the client will manage the docker instance
+ *
  * @author Devam Sisodraker (devam@alumni.ubc.ca)
  */
+
+import models.Project;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -12,9 +15,11 @@ public final class DockerManager {
     private static Runtime runtime = null;
     private static final DockerManager INSTANCE = new DockerManager();
     private static boolean DOCKER_AVAILABLE = false;
+    private static Project currentProject;
 
     private DockerManager() {
         this.runtime = Runtime.getRuntime();
+        this.currentProject = null;
         DOCKER_AVAILABLE = this.checkDocker();
     }
 
@@ -25,6 +30,32 @@ public final class DockerManager {
      */
     public static DockerManager getInstance() {
         return INSTANCE;
+    }
+
+    /**
+     * Retrieves the currently running project
+     *
+     * @return the currently running project
+     */
+    public Project getCurrentProject() {
+        return currentProject;
+    }
+
+
+    /**
+     * Runs a project and requests the docker instance to join a swarm
+     *
+     * @param project the project to run
+     * @return Whether docker has successfully joined the swarm
+     * @throws IOException
+     */
+    public boolean runProject(Project project) throws IOException {
+        if (joinSwarm(project.getIp(), project.getPort(), project.getToken())) {
+            this.currentProject = project;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -65,7 +96,7 @@ public final class DockerManager {
         Process process = this.runtime.exec(command);
         String out = new String(process.getInputStream().readAllBytes(), StandardCharsets.US_ASCII);
 
-        if (out == "This node joined a swarm as a worker.") {
+        if (out.startsWith("This node joined a swarm as a worker."))  {
             return true;
         }
         return false;
@@ -85,7 +116,7 @@ public final class DockerManager {
         Process process = this.runtime.exec(command);
         String out = new String(process.getInputStream().readAllBytes(), StandardCharsets.US_ASCII);
 
-        if (out == "Node left the default swarm.") {
+        if (out.startsWith("Node left the default swarm.")) {
             return true;
         }
         return false;
@@ -101,7 +132,7 @@ public final class DockerManager {
     public boolean restartDaemon() throws IOException {
         this.preCheckDocker();
 
-        if(System.getProperty("os").startsWith("Windows")) {
+        if (System.getProperty("os").startsWith("Windows")) {
             // Windows
             this.restartWindowsDaemon();
         } else {
@@ -140,7 +171,7 @@ public final class DockerManager {
     }
 
     private void preCheckDocker() {
-        if(!this.checkDocker()) {
+        if (!this.checkDocker()) {
             throw new Error("Docker is not accessible, make sure it is installed and added to the path.");
         }
     }

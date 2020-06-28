@@ -5,6 +5,12 @@
  */
 
 package utils;
+import models.Project;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,11 +19,6 @@ import java.net.URL;
 import java.net.http.HttpClient;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 public final class ProjectsFetcher {
 
@@ -35,6 +36,8 @@ public final class ProjectsFetcher {
      * @return Singleton instance of ProjectsFetcher
      */
     public static ProjectsFetcher getInstance() {
+
+
         return INSTANCE;
     }
 
@@ -114,8 +117,8 @@ public final class ProjectsFetcher {
 
             // host properties
             JSONObject hostObject = (JSONObject) ((JSONObject) ((JSONObject) fieldsObject.get("host")).get("mapValue")).get("fields");
-            String hostIp = ((String) ((JSONObject) hostObject.get("ip")).get("stringValue"));
             String hostPort = ((String) ((JSONObject) hostObject.get("port")).get("integerValue"));
+            String hostIp = ((String) ((JSONObject) hostObject.get("ip")).get("stringValue"));
             String hostToken = ((String) ((JSONObject) hostObject.get("token")).get("stringValue"));
 
             Project project = new Project(

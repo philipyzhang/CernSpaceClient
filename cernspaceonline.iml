@@ -11,5 +11,14 @@
     <orderEntry type="library" name="JavaFX" level="application" />
     <orderEntry type="library" name="javafx-liang" level="project" />
     <orderEntry type="library" name="json-simple-1.1.1" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../jars/json-simple-1.1.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
